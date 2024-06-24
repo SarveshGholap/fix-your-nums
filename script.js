@@ -395,35 +395,35 @@ function DaysCalculator() {
   }  
 }  
 
-const solutionEq = () => {
-  const a = parseInt(document.getElementById("a").value);
-  const b = parseInt(document.getElementById("b").value);
-  const c = parseInt(document.getElementById("c").value);
+// const solutionEq = () => {
+//   const a = parseInt(document.getElementById("a").value);
+//   const b = parseInt(document.getElementById("b").value);
+//   const c = parseInt(document.getElementById("c").value);
 
-  var disc = b * b - 4 * a * c;
-  if (disc < 0) {
-    var discRoot = Math.sqrt(-disc);
-    var sol_real = -b / (2 * a);
-    var sol_img = discRoot / (2 * a);
-    var resSol_real = sol_real.toFixed(2);
-    var resSol_img = sol_img.toFixed(4);
-    var resSol1 = "(" + resSol_real + " + i " + resSol_img + ")";
-    var resSol2 = "(" + resSol_real + " - i " + resSol_img + ")";
-    document.getElementById(
-      "resultEqn"
-    ).innerHTML = `Solutions are ${resSol1} & ${resSol2}`;
-  } else {
-    var discRoot = Math.sqrt(disc);
-    var sol1 = (-b + discRoot) / (2 * a);
-    var sol2 = (-b - discRoot) / (2 * a);
-    var resSol1 = sol1.toFixed(2);
-    var resSol2 = sol2.toFixed(2);
+//   var disc = b * b - 4 * a * c;
+//   if (disc < 0) {
+//     var discRoot = Math.sqrt(-disc);
+//     var sol_real = -b / (2 * a);
+//     var sol_img = discRoot / (2 * a);
+//     var resSol_real = sol_real.toFixed(2);
+//     var resSol_img = sol_img.toFixed(4);
+//     var resSol1 = "(" + resSol_real + " + i " + resSol_img + ")";
+//     var resSol2 = "(" + resSol_real + " - i " + resSol_img + ")";
+//     document.getElementById(
+//       "resultEqn"
+//     ).innerHTML = `Solutions are ${resSol1} & ${resSol2}`;
+//   } else {
+//     var discRoot = Math.sqrt(disc);
+//     var sol1 = (-b + discRoot) / (2 * a);
+//     var sol2 = (-b - discRoot) / (2 * a);
+//     var resSol1 = sol1.toFixed(2);
+//     var resSol2 = sol2.toFixed(2);
 
-    document.getElementById(
-      "resultEqn"
-    ).innerHTML = `Solutions are ${resSol1} & ${resSol2}`;
-  }
-};
+//     document.getElementById(
+//       "resultEqn"
+//     ).innerHTML = `Solutions are ${resSol1} & ${resSol2}`;
+//   }
+// };
 
 // currencyConverter : Subrat Kumar
 const dropList = document.querySelectorAll("form select"),
@@ -522,6 +522,200 @@ function calculateHcf() {
 
 }
 
+function ageCalculator() {  
+    var userinput = document.getElementById("DOB").value;  
+    var dob = new Date(userinput);  
+       
+    if(userinput==null || userinput==''){  
+      document.getElementById("message").innerHTML = "**Choose a date please!";    
+      return false;   
+    }   
+    else {  
+    var dobYear = dob.getYear();  
+    var dobMonth = dob.getMonth();  
+    var dobDate = dob.getDate();  
+        
+    var now = new Date();   
+    var currentYear = now.getYear();  
+    var currentMonth = now.getMonth();  
+    var currentDate = now.getDate();  
+       
+    var age = {};  
+    var ageString = "";  
+     
+    yearAge = currentYear - dobYear;  
+     
+    if (currentMonth >= dobMonth)   
+      var monthAge = currentMonth - dobMonth;  
+    else {  
+      yearAge--;  
+      var monthAge = 12 + currentMonth - dobMonth;  
+    }  
+   
+    if (currentDate >= dobDate)    
+      var dateAge = currentDate - dobDate;  
+    else {  
+      monthAge--;  
+      var dateAge = 31 + currentDate - dobDate;  
+  
+      if (monthAge < 0) {  
+        monthAge = 11;  
+        yearAge--;  
+      }  
+    }  
+     
+    age = {  
+    years: yearAge,  
+    months: monthAge,  
+    days: dateAge  
+    };  
+        
+        
+    if ( (age.years > 0) && (age.months > 0) && (age.days > 0) )  
+       ageString = age.years + " years, " + age.months + " months, and " + age.days + " days old.";  
+    else if ( (age.years == 0) && (age.months == 0) && (age.days > 0) )  
+       ageString = "Only " + age.days + " days old!";    
+    else if ( (age.years > 0) && (age.months == 0) && (age.days == 0) )  
+       ageString = age.years +  " years old.<br> Happy Birthday!!";  
+    else if ( (age.years > 0) && (age.months > 0) && (age.days == 0) )  
+       ageString = age.years + " years and " + age.months + " months old.";  
+    else if ( (age.years == 0) && (age.months > 0) && (age.days > 0) )  
+       ageString = age.months + " months and " + age.days + " days old.";  
+    else if ( (age.years > 0) && (age.months == 0) && (age.days > 0) )  
+       ageString = age.years + " years, and" + age.days + " days old.";  
+    else if ( (age.years == 0) && (age.months > 0) && (age.days == 0) )  
+       ageString = age.months + " months old.";   
+    else ageString = "Welcome to Earth! <br> It's first day on Earth!";   
+   
+    return document.getElementById("resultAge").innerHTML = ageString;   
+               
+  }  
+}  
+
+
+
+const solutionEq = () =>{
+    const a = parseInt(document.getElementById('a').value);
+    const b = parseInt(document.getElementById('b').value);
+    const c = parseInt(document.getElementById('c').value);
+
+    var disc = ((b*b) - (4*a*c));
+    if(disc<0){
+        document.getElementById('resultEqn').innerHTML = `The equation has no real solution` ;
+    } else{
+        var discRoot = Math.sqrt(disc);
+        var sol1 = ((-b+discRoot)/(2*a));
+        var sol2 = ((-b-discRoot)/(2*a));
+        var resSol1 = sol1.toFixed(2);
+        var resSol2 = sol2.toFixed(2);
+
+        document.getElementById('resultEqn').innerHTML = `Solutions are ${resSol1} & ${resSol2}` ;
+
+    }
+}
+
+// reset for agecalc
+function fun1(){
+document.querySelector("#ageSet").addEventListener('click',function(){
+    document.querySelector('#DOB').value="";
+    document.getElementById("resultAge").innerHTML="";
+});
+}
+
+// reset for bindec 
+function fun2(){
+document.querySelector("#bindecSet").addEventListener('click',function(){
+    document.querySelector('#numChange').value="";
+    document.getElementById('resultNumChange').innerHTML="";
+});
+}
+
+// reset for bmi calculator
+function fun3(){
+document.querySelector("#bmiSet").addEventListener('click',function(){
+    document.querySelector('#wei').value="";
+    document.querySelector('#hei').value="";
+    document.getElementById('resultBMImsg').innerHTML= "";
+});
+}
+
+// reset for simple calculator
+function fun4(){
+document.querySelector("#calc1").addEventListener('click',function(){
+    document.querySelector('#num1').value="";
+    document.querySelector('#num2').value="";
+    document.getElementById('resultCalculator').innerHTML= "";
+});
+}
+
+// reset for equation calculator
+function fun5(){
+document.querySelector("#equationSet").addEventListener('click',function(){
+    document.querySelector('#a').value="";
+    document.querySelector('#b').value="";
+    document.querySelector('#c').value="";
+    document.getElementById('resultEqn').innerHTML = "";
+});
+}
+
+// reset for factorial calculator
+function fun6(){
+document.querySelector("#factSet").addEventListener('click',function(){
+    document.querySelector('#fact').value="";
+    document.getElementById('resultFact').innerHTML= "";
+});
+}
+
+// reset for logarithm calculator
+function fun7(){
+document.querySelector("#logSet").addEventListener('click',function(){
+    document.querySelector('#log').value="";
+    document.getElementById('resultLog').innerHTML= "";
+});
+}
+
+// reset for power calculator
+function fun8(){
+document.querySelector("#powSet").addEventListener('click',function(){
+    document.querySelector('#base').value="";
+    document.querySelector('#index').value="";
+    document.getElementById('resultPower').innerHTML= "";
+});
+}
+
+// reset for temprature calculator
+function fun9(){
+document.querySelector("#tempSet").addEventListener('click',function(){
+    document.querySelector('#temp').value="";
+    document.getElementById('resultContainer').innerHTML= "";
+});
+}
+
+//reset for days calculator
+function daySet(){
+  document.querySelector("#button1").addEventListener('click',function(){
+     document.querySelector("#starting-Date").value="";
+     document.querySelector("#ending-Date").value="";
+     document.getElementById("resultAge").innerHTML="";
+  });
+}
+
+//reset for hcf calculator
+function hcfSet(){
+  document.querySelector("#button1").addEventListener('click',function(){
+     document.querySelector('#num1').value="";
+     document.querySelector('#num2').value="";
+     document.getElementById('resultHCF').innerHTML="";
+     document.getElementById('resultLCM').innerHTML="";
+  });
+}
+
+//reset roman
+function romanSet(){
+  document.getElementById("input").value="";
+  document.getElementById("output").innerHTML="";
+}
+
 function resultantConversion() {
   const input = document.getElementById("input").value;
 
@@ -535,6 +729,13 @@ function resultantConversion() {
 }
 
 function romanToInt(roman) {
+ let result = 0;
+  
+  if(isNaN(roman) == false)
+  {
+    result = "Please provide correct input";
+    return result;
+  }
   const romanMap = {
     "I": 1,
     "V": 5,
@@ -543,9 +744,14 @@ function romanToInt(roman) {
     "C": 100,
     "D": 500,
     "M": 1000,
+    "i": 1,
+    "v": 5,
+    "x": 10,
+    "l": 50,
+    "c": 100,
+    "d": 500,
+    "m": 1000,
   };
-
-  let result = 0;
 
   for (let i = 0; i < roman.length; i++) {
     const current = romanMap[roman[i]];
@@ -563,6 +769,12 @@ function romanToInt(roman) {
 }
 
 function intToRoman(num) {
+  let result = "";
+  if(isNaN(num))
+  {
+    result = "Please provide correct input";
+    return result;
+  }
   const romanMap = {
     1: "I",
     4: "IV",
@@ -578,9 +790,7 @@ function intToRoman(num) {
     900: "CM",
     1000: "M",
   };
-
-  let result = "";
-
+  
   for (const [value, symbol] of Object.entries(romanMap).reverse()) {
     const count = Math.floor(num / value);
     num %= value;
